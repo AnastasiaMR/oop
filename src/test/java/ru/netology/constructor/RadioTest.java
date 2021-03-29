@@ -1,7 +1,7 @@
 package ru.netology.constructor;
 
 import org.junit.jupiter.api.Test;
-import ru.netology.domain.Radio;
+import ru.netology.constructor.Radio;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,58 +10,71 @@ public class RadioTest {
 
     @Test
     public void shouldSetValidStation( ) {
-        ru.netology.domain.Radio radio = new ru.netology.domain.Radio( );
-        radio.setMaxStation( 9 );
-        radio.setMinStation( 0 );
-        radio.setCurrentStation( 4 );
-        assertEquals( 4, radio.getCurrentStation( ) );
-    }
-
-    @Test
-    public void shouldSetNotValidStation( ) {
-        ru.netology.domain.Radio radio = new ru.netology.domain.Radio( );
-        radio.setMaxStation( 9 );
-        radio.setMinStation( 0 );
-        radio.setCurrentStation( 10 );
-        assertEquals( 0, radio.getCurrentStation( ) );
-    }
-
-    @Test
-    public void shouldSetSwitchStation( ) {
-        ru.netology.domain.Radio radio = new ru.netology.domain.Radio( );
-        radio.setMaxStation( 9 );
-        radio.setMinStation( 0 );
-        radio.setCurrentStation( 4 );
-        radio.setPrevStation( );
+        Radio radio = new Radio( 10, 0 , 3, 100, 0, 0);
         assertEquals( 3, radio.getCurrentStation( ) );
     }
 
     @Test
+    public void shouldSetMaxNotValidStation( ) {
+        Radio radio = new Radio( 10, 0 , 10, 100, 0, 0);
+        radio.setCurrentStation( 11 );
+        assertEquals( 0, radio.getCurrentStation( ) );
+    }
+
+    @Test
+    public void shouldSetMinNotValidStation( ) {
+        Radio radio = new Radio(10, 0, 0, 100, 0, 0 );
+        radio.setCurrentStation( -1 );
+        assertEquals( 10, radio.getCurrentStation( ) );
+    }
+
+    @Test
     public void shouldSetNextStation( ) {
-        ru.netology.domain.Radio radio = new ru.netology.domain.Radio( );
-        radio.setMaxStation( 9 );
-        radio.setMinStation( 0 );
-        radio.setCurrentStation( 4 );
-        radio.setNextStation( );
-        assertEquals( 5, radio.getCurrentStation( ) );
+        Radio radio = new Radio(10, 0, 1, 100, 0, 0 );
+        radio.NextStation( );
+        assertEquals( 2, radio.getCurrentStation( ) );
+    }
+
+    @Test
+    public void shouldSetPrevStation( ) {
+        Radio radio = new Radio(10, 0, 2, 100, 0, 0 );
+        radio.PrevStation( );
+        assertEquals( 1, radio.getCurrentStation( ) );
+    }
+
+    @Test
+    public void shouldSetValidVolume( ) {
+        Radio radio = new Radio( 10, 0 , 3, 100, 0, 5);
+        assertEquals( 5, radio.getCurrentVolume( ) );
     }
 
     @Test
     public void shouldSetNotValidMinVolume( ) {
-        ru.netology.domain.Radio radio = new ru.netology.domain.Radio();
-        radio.setMaxVolume(10);
-        radio.setMinVolume(0);
-        radio.setCurrentVolume(-1);
-        assertEquals(0, radio.getCurrentVolume());
+        Radio radio = new Radio(10, 0, 1, 100, 0, 0);
+        radio.setCurrentVolume( -1 );
+        assertEquals(0, radio.getCurrentVolume( ) );
     }
+
 
     @Test
     public void shouldSetNotValidMaxVolume() {
-        ru.netology.domain.Radio radio = new Radio();
-        radio.setMaxVolume(10);
-        radio.setMinVolume(0);
-        radio.setCurrentVolume(10);
-        radio.increaseCurrentVolume();
-        assertEquals(10, radio.getCurrentVolume());
+        Radio radio = new Radio(10, 0, 1, 100, 0, 100);
+        radio.setCurrentVolume(101);
+        assertEquals(100, radio.getCurrentVolume());
     }
+
+    @Test
+    public void shouldSetIncreaseCurrentVolume( ) {
+        Radio radio = new Radio( 10, 0 , 3, 100, 0, 9);
+        radio.increaseCurrentVolume( );
+        assertEquals( 10, radio.getCurrentVolume( ) );
+    }
+
+    @Test
+    public void shouldSetDecreaseCurrentVolume( ) {
+        Radio radio = new Radio( 10, 0 , 3, 100, 0, 9);
+        radio.decreaseCurrentVolume( );
+        assertEquals( 8, radio.getCurrentVolume( ) );
+    }
+
 }
