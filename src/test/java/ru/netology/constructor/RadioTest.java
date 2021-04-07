@@ -15,6 +15,12 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldQuantityStation() {
+        Radio radio = new Radio(10);
+        assertEquals( 10, radio.getQuantityStation( ) );
+    }
+
+    @Test
     public void shouldSetMaxNotValidStation( ) {
         Radio radio = new Radio( 10, 0 , 10, 100, 0, 0);
         radio.setCurrentStation( 11 );
@@ -23,21 +29,21 @@ public class RadioTest {
 
     @Test
     public void shouldSetMinNotValidStation( ) {
-        Radio radio = new Radio(10, 0, 0, 100, 0, 0 );
+        Radio radio = new Radio(10, 0, 0, 100, 0, 0);
         radio.setCurrentStation( -1 );
         assertEquals( 10, radio.getCurrentStation( ) );
     }
 
     @Test
     public void shouldSetNextStation( ) {
-        Radio radio = new Radio(10, 0, 1, 100, 0, 0 );
+        Radio radio = new Radio(10, 0, 1, 100, 0, 0);
         radio.NextStation( );
         assertEquals( 2, radio.getCurrentStation( ) );
     }
 
     @Test
     public void shouldSetPrevStation( ) {
-        Radio radio = new Radio(10, 0, 2, 100, 0, 0 );
+        Radio radio = new Radio(10, 0, 2, 100, 0, 0);
         radio.PrevStation( );
         assertEquals( 1, radio.getCurrentStation( ) );
     }
