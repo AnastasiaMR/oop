@@ -1,11 +1,11 @@
 package ru.netology.domain;
 
 public class Radio {
-    private int maxStation;
-    private int minStation;
+    private int maxStation = 9;
+    private int minStation = 0;
     private int currentStation;
-    private int maxVolume;
-    private int minVolume;
+    private int maxVolume = 10;
+    private int minVolume = 0;
     private int currentVolume;
     private boolean on;
 
@@ -29,7 +29,7 @@ public class Radio {
         return currentStation;
     }
 
-    public void  setCurrentStation(int currentStation) {
+    public void setCurrentStation(int currentStation) {
         if (currentStation > maxStation) {
             return;
         }
@@ -60,45 +60,45 @@ public class Radio {
     }
 
     public void setCurrentVolume(int currentVolume) {
-        if (currentVolume >= maxVolume) {
+        if (currentVolume > maxVolume) {
             return;
         }
-        if (currentVolume <= minVolume) {
+        if (currentVolume < minVolume) {
             return;
         }
         this.currentVolume = currentVolume;
     }
 
-    public void setPrevStation() {
+    public void setPrevStation( ) {
         if (currentStation > minStation) {
             currentStation--;
-        }
-        else
+        } else {
             currentStation = maxStation;
+        }
     }
 
-    public void setNextStation() {
+    public void setNextStation( ) {
         if (currentStation < maxStation) {
             currentStation++;
+        } else {
+            currentStation = minStation;
         }
-        else
-            currentStation = minStation;;
     }
 
-    public void increaseCurrentVolume() {
+    public void increaseCurrentVolume( ) {
         if (currentVolume < maxVolume) {
             currentVolume++;
-        }
-        else
+        } else {
             currentVolume = maxVolume;
+        }
     }
 
-    public void decreaseCurrentVolume() {
+    public void decreaseCurrentVolume( ) {
         if (currentVolume > minVolume) {
             currentVolume--;
-        }
-        else
+        } else {
             currentVolume = minVolume;
+        }
     }
 
     public boolean isOn( ) {
